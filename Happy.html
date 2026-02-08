@@ -149,16 +149,12 @@
 
 <script>
 function accept() {
-   
-   window.open("https://otieu.com/4/10346089", "_blank");
+    window.open("https://otieu.com/4/10346089", "_blank");  
 
-    
     document.querySelector('.question').style.display = 'none';
     const result = document.getElementById('result');
     result.style.display = 'block';
     launchConfetti();
-}
-
 }
 
 function launchConfetti() {
@@ -170,7 +166,6 @@ function launchConfetti() {
             ['#ff5f9e','#ff3366','#ffd1dc','#ff9ecf'][Math.floor(Math.random()*4)];
         confetti.style.animationDuration = (2 + Math.random() * 3) + 's';
         document.body.appendChild(confetti);
-
         setTimeout(() => confetti.remove(), 5000);
     }
 }
