@@ -3,14 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Special Question</title>
+<title>Will You Be My Valentine? 💖</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-        font-family: "Poppins", system-ui, sans-serif;
-    }
-
+    * { box-sizing: border-box; font-family: "Poppins", system-ui, sans-serif; }
     body {
         margin: 0;
         height: 100vh;
@@ -19,110 +15,50 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
-    }
-
-    .card {
-        width: 90%;
-        max-width: 360px;
-        background: #fff;
-        border-radius: 20px;
-        padding: 30px 20px;
-        text-align: center;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-        animation: popIn 0.8s ease;
         position: relative;
     }
-
-    @keyframes popIn {
-        from { transform: scale(0.8); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
+    .card {
+        width: 90%; max-width: 360px;
+        background: #fff; border-radius: 20px; padding: 30px 20px;
+        text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        animation: popIn 0.8s ease; position: relative; z-index: 10;
     }
-
-    h1 {
-        font-size: 1.4rem;
-        color: #333;
-        margin-bottom: 10px;
-    }
-
-    p {
-        font-size: 0.95rem;
-        color: #666;
-        margin-bottom: 20px;
-    }
-
-    .emoji {
-        font-size: 3rem;
-        margin-bottom: 10px;
-        animation: float 2s infinite ease-in-out;
-    }
-
-    @keyframes float {
-        0%,100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-    }
-
-    .buttons {
-        display: flex;
-        gap: 15px;
-        justify-content: center;
-        margin-top: 20px;
-    }
-
+    @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    h1 { font-size: 1.4rem; color: #333; margin-bottom: 10px; }
+    p { font-size: 0.95rem; color: #666; margin-bottom: 20px; }
+    .emoji { font-size: 3rem; margin-bottom: 10px; animation: float 2s infinite ease-in-out; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .buttons { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
     button {
-        padding: 14px 28px;
-        border: none;
-        border-radius: 30px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        position: relative; /* important for No button movement */
+        padding: 14px 28px; border: none; border-radius: 30px;
+        font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; position: relative;
     }
-
     .yes {
-        background: linear-gradient(135deg, #ff5f9e, #ff3366);
-        color: white;
+        background: linear-gradient(135deg, #ff5f9e, #ff3366); color: white;
         box-shadow: 0 10px 20px rgba(255, 95, 158, 0.4);
     }
-
-    .yes:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 15px 30px rgba(255, 95, 158, 0.6);
-    }
-
-    .no {
-        background: #888;
-        color: white;
-    }
-
+    .yes:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(255, 95, 158, 0.6); }
+    .no { background: #888; color: white; }
     .result {
-        display: none;
-        animation: fadeIn 0.8s ease forwards;
+        display: none; animation: fadeIn 1.2s ease forwards; position: relative; z-index: 5;
     }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+    .result img { width: 100%; border-radius: 15px; margin-top: 15px; }
+    /* Floating hearts trail on yes screen */
+    .heart-trail {
+        position: absolute; pointer-events: none; width: 20px; height: 20px;
+        font-size: 20px; color: #ff3366; opacity: 0.8; transform: translate(-50%, -50%);
+        animation: floatHeart 4s linear forwards; z-index: 1;
     }
-
-    .result img {
-        width: 100%;
-        border-radius: 15px;
-        margin-top: 15px;
+    @keyframes floatHeart {
+        to { transform: translate(-50%, -50%) translateY(-150px) rotate(360deg); opacity: 0; }
     }
-
-    /* Confetti */
-    .confetti {
-        position: fixed;
-        width: 8px;
-        height: 8px;
-        background: red;
-        animation: fall linear forwards;
-    }
-
-    @keyframes fall {
-        to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-    }
+    /* Extra falling petals/hearts background */
+    .petal { position: absolute; font-size: 18px; color: #ff9ecf; pointer-events: none; animation: fallPetal 8s linear infinite; opacity: 0.7; }
+    @keyframes fallPetal { to { transform: translateY(120vh) rotate(720deg); opacity: 0; } }
+    /* Confetti (kept your original) */
+    .confetti { position: fixed; width: 8px; height: 8px; background: red; animation: fall linear forwards; }
+    @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
 </style>
 </head>
 
@@ -132,8 +68,7 @@
     <div class="question">
         <div class="emoji">💖</div>
         <h1>Will you be my Valentine?</h1>
-        <p>I have something special just for you</p>
-
+        <p>I have something special just for you...</p>
         <div class="buttons">
             <button class="yes" onclick="accept()">Yes 💕</button>
             <button class="no" id="noBtn">No 😢</button>
@@ -142,22 +77,29 @@
 
     <div class="result" id="result">
         <div class="emoji">😍</div>
-        <h1>YAY BABE!!!</h1>
-        <p>You just made my day ❤️</p>
+        <h1>YAY!!! My heart is yours ❤️</h1>
+        <p>You just made my entire world brighter... I can't wait to hold you close 💞</p>
         <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9" alt="Love Image">
     </div>
 </div>
 
+<!-- Container for hearts & petals -->
+<div id="heartsContainer"></div>
+
 <script>
+// Accept - show romance!
 function accept() {
-    // Optional: keep the redirect or remove it
-   
+    // Optional redirect
+    // window.open("https://otieu.com/4/10346089", "_blank");
 
     document.querySelector('.question').style.display = 'none';
-    document.getElementById('result').style.display = 'block';
+    const result = document.getElementById('result');
+    result.style.display = 'block';
     launchConfetti();
+    startRomanticEffects();  // Start the magic!
 }
 
+// Confetti (your original)
 function launchConfetti() {
     for (let i = 0; i < 60; i++) {
         const confetti = document.createElement('div');
@@ -170,37 +112,60 @@ function launchConfetti() {
     }
 }
 
-// ────────────────────────────────────────────────
-// The "No" button runs away magic
-// ────────────────────────────────────────────────
-const noBtn = document.getElementById('noBtn');
+// Romantic effects: Mouse-follow hearts + falling petals
+function startRomanticEffects() {
+    const container = document.getElementById('heartsContainer');
 
+    // Mouse trail hearts
+    document.addEventListener('mousemove', (e) => {
+        if (document.getElementById('result').style.display === 'block') {
+            const heart = document.createElement('div');
+            heart.className = 'heart-trail';
+            heart.textContent = '💖';
+            heart.style.left = e.clientX + 'px';
+            heart.style.top = e.clientY + 'px';
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+    });
+
+    // Gentle falling petals / hearts in background
+    setInterval(() => {
+        if (document.getElementById('result').style.display === 'block') {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.textContent = Math.random() > 0.5 ? '🌸' : '💗';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = (6 + Math.random() * 6) + 's';
+            petal.style.fontSize = (12 + Math.random() * 16) + 'px';
+            container.appendChild(petal);
+            setTimeout(() => petal.remove(), 15000);
+        }
+    }, 800);
+}
+
+// Dodging No button (your feature, kept)
+const noBtn = document.getElementById('noBtn');
 noBtn.addEventListener('click', (e) => {
-    // Very hard to reach, but if they click it anyway (touch / fast click)
     e.preventDefault();
-    alert("Oh nooo... 🥺💔 Maybe try Yes instead? 😭");
+    alert("Oh nooo... 🥺💔 But I know your heart says Yes deep down 😭 Try again?");
 });
 
 document.addEventListener('mousemove', (e) => {
     const btnRect = noBtn.getBoundingClientRect();
     const btnCenterX = btnRect.left + btnRect.width / 2;
     const btnCenterY = btnRect.top + btnRect.height / 2;
-
     const distance = Math.hypot(e.clientX - btnCenterX, e.clientY - btnCenterY);
 
-    // If mouse gets closer than ~80px → RUN AWAY!
     if (distance < 80) {
-        // Random new position (stay inside viewport, with some margin)
         const maxX = window.innerWidth - btnRect.width - 40;
         const maxY = window.innerHeight - btnRect.height - 40;
-
         const newX = Math.random() * maxX + 20;
         const newY = Math.random() * maxY + 20;
-
-        noBtn.style.position = 'fixed';   // switch to fixed so it can move freely
+        noBtn.style.position = 'fixed';
         noBtn.style.left = newX + 'px';
-        noBtn.style.top  = newY + 'px';
-        noBtn.style.transition = 'all 0.4s ease-out'; // smooth movement
+        noBtn.style.top = newY + 'px';
+        noBtn.style.transition = 'all 0.4s ease-out';
     }
 });
 </script>
